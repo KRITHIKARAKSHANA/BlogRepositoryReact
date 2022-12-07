@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import BlogHome from './BlogHome';
+import Login from './Login';
+import Register from './Register';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let [page,setpage]=useState();
+let log=(value)=>{
+  setpage(value);
 }
 
-export default App;
+let changeTo=(a)=>{
+  setpage(a);
+  console.log(a);
+}
+
+
+  if(page=="register"){
+    return(
+      <Register goBack={changeTo}/>
+    )
+  }else if(page=="login"){
+    return (
+    <Login logout={log}/>
+  )
+  }else{
+    return(
+      <BlogHome changePage={changeTo}/>
+    )
+  }
+}
+
+export default (App);
